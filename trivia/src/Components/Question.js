@@ -15,12 +15,6 @@ export default function Question({ player1Name, player2Name, selectedCategory, p
     const [isCorrect, setIsCorrect] = useState(null);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (selectedCategory) {
-            fetchQuestions();
-        }
-    }, [selectedCategory, fetchQuestions]);
-
     const fetchQuestions = useCallback(() => {
         Promise.all([
             fetch(
@@ -54,6 +48,12 @@ export default function Question({ player1Name, player2Name, selectedCategory, p
                 console.error("Error fetching questions:", error);
             });
     }, [selectedCategory]);
+
+     useEffect(() => {
+        if (selectedCategory) {
+            fetchQuestions();
+        }
+    }, [selectedCategory, fetchQuestions]);
 
 
 
