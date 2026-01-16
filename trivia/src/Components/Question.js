@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Question.css";
 
@@ -21,7 +21,7 @@ export default function Question({ player1Name, player2Name, selectedCategory, p
         }
     }, [selectedCategory, fetchQuestions]);
 
-    const fetchQuestions = () => {
+    const fetchQuestions = useCallback(() => {
         Promise.all([
             fetch(
                 `https://the-trivia-api.com/v2/questions?categories=${selectedCategory}&limit=2&difficulties=easy&type=multiple_choice`
@@ -53,7 +53,7 @@ export default function Question({ player1Name, player2Name, selectedCategory, p
             .catch(error => {
                 console.error("Error fetching questions:", error);
             });
-    };
+    }, [selectedCategory]);
 
 
 
