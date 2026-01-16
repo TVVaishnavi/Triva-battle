@@ -19,7 +19,7 @@ export default function Question({ player1Name, player2Name, selectedCategory, p
         if (selectedCategory) {
             fetchQuestions();
         }
-    }, [selectedCategory]);
+    }, [selectedCategory, fetchQuestions]);
 
     const fetchQuestions = () => {
         Promise.all([
